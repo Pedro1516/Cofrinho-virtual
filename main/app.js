@@ -9,6 +9,12 @@ const btnMenuMoedas = document.querySelector('#ver-inf-moedas')
 const menuMoedas = document.querySelector('#informacoes-moedas')
 const quantidadeMoedas = document.querySelectorAll('.quantia-moeda')
 const quantidadeCedulas = document.querySelectorAll('.quantia-cedula')
+const meta = document.querySelector('#meta')
+const confirmarMeta = document.querySelector('#confirmar-meta')
+const exibirMeta = document.querySelector('#objetivo-dinheiro')
+const valorGrafico = document.querySelector('#valor-meta')
+const grafico = document.querySelector('#ver-grafico')
+
 
 const dinheiro = {
   moedas: 0,
@@ -193,4 +199,26 @@ btnMenuMoedas.addEventListener('mouseenter', () => {
 
 btnMenuMoedas.addEventListener('mouseout', () => {
   menuMoedas.style.display = 'none'
+})
+
+
+//Adicionar meta
+
+
+function definirMeta(valor) {
+  const valorMeta = valor.toFixed(2)
+  exibirMeta.innerText = `Meta: R$ ${valorMeta}`
+}
+
+function mostrarMetaNoGrafico(valor) {
+  const diferencaValor =(dinheiro.total - valor).toFixed(2)
+  valorGrafico.innerText = `R$ ${diferencaValor}`
+  return diferencaValor
+}
+
+confirmarMeta.addEventListener('click', () => {
+  if(meta.value.length > 0){
+    definirMeta(meta.value)
+    meta.value = ''
+  }
 })

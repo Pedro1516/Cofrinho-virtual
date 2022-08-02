@@ -7,7 +7,7 @@
     <title>Cofre Virtual</title>
   </head>
   <body>
-    <section>
+    <section class="add-dinheiro">
       <div>
         <h2>Cédulas</h2>
         <div class="cedulas">
@@ -180,6 +180,21 @@
       </div>
     </section>
 
+    <section class="meta-dinheiro">
+
+      <div class="add-meta">
+        <label for="meta">Digite o valor a ser alcançado </label>
+        <input type="number" id="meta" placeholder="700.00">
+        <input type="button" id="confirmar-meta" value="confirmar">
+        <span id="objetivo-dinheiro">Meta: </span>
+      </div>
+
+      <div class="grafico">
+        <span id="ver-grafico">
+          <span id="valor-meta">R$500,00</span>
+        </span>
+      </div>
+    </section>
 
     <script src="app.js" charset="utf-8"></script>
   </body>

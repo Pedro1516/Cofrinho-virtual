@@ -131,6 +131,7 @@ label {
 .grafico {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   flex-direction: column;
   position: relative;
   width: 100%;
@@ -141,18 +142,15 @@ label {
 }
 
 #ver-grafico {
-  position: absolute;
+  position: relative;
   width: 60px;
   height: 350px;
   background: red;
   border: 1px solid gray;
-  bottom: 5px;
-  left: calc(50% - 30px);
 }
 
 #valor-meta {
   position: relative;
   white-space: nowrap;
-  color: black;
-  
+  color: rgb(200, 200, 200);
 }

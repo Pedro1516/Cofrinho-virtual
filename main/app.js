@@ -28,7 +28,6 @@ const quantiaMoedas = {
   moeda25: 0,
   moeda50: 0,
   moeda1: 0
-
 }
 
 const quantiaCedulas = {
@@ -58,6 +57,8 @@ function atualizarQuantidade() {
 add.forEach((item, i) => {
   item.addEventListener('click', () => {
     const valor = Number(item.attributes.valor.value)
+    
+    
 
     //Soma o valor do dinheiro ao array
     if(i < 7){
@@ -115,6 +116,8 @@ add.forEach((item, i) => {
     valorTotal.innerText = dinheiro.total.toFixed(2)
 
     atualizarQuantidade()
+    
+    atualizarGrafico()
   })
 });
 
@@ -208,17 +211,42 @@ btnMenuMoedas.addEventListener('mouseout', () => {
 function definirMeta(valor) {
   const valorMeta = valor.toFixed(2)
   exibirMeta.innerText = `Meta: R$ ${valorMeta}`
+  exibirMeta.dinheiro = valorMeta
 }
 
 function mostrarMetaNoGrafico(valor) {
-  const diferencaValor =(dinheiro.total - valor).toFixed(2)
+  const diferencaValor = (dinheiro.total - valor).toFixed(2)
   valorGrafico.innerText = `R$ ${diferencaValor}`
   return diferencaValor
 }
 
+function alterarTamanhoGrafico(meta, dinheiro){
+  if(meta - dinheiro < 0){
+    grafico.style.height = '350px'
+    return
+  }
+  let porcentagem = (dinheiro * 100) / meta 
+  
+  grafico.style.height = `${(porcentagem / 100) * 350}px`
+}
+
+function atualizarGrafico(){
+  if(exibirMeta.dinheiro == undefined){
+    return
+  }
+  
+  alterarTamanhoGrafico(Number(exibirMeta.dinheiro), Number(dinheiro.total))
+  mostrarMetaNoGrafico(Number(exibirMeta.dinheiro))
+}
+
+
 confirmarMeta.addEventListener('click', () => {
   if(meta.value.length > 0){
-    definirMeta(meta.value)
-    meta.value = ''
+   let valor = Number(meta.value)
+   definirMeta(valor)
+   let diferencaValor = mostrarMetaNoGrafico(valor)
+   alterarTamanhoGrafico(valor, Number(dinheiro.total))
+   meta.value = ''
   }
 })
+
